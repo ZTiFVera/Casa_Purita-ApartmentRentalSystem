@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Casa_Purita_ApartmentRentalSystem.MVVM.Views.MainView"
+             Title="Casa Purita - Tenants"
+             BackgroundColor="#F5F5F5">
+
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <StackLayout Grid.Row="0" BackgroundColor="#1A3C5E" Padding="20,15">
+            <Label Text="🏠 Casa Purita"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+            <Label Text="Apartment Rental Management System"
+                   FontSize="12"
+                   TextColor="#B0C4DE"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <Button Grid.Row="1"
+                Text="+ Add New Tenant"
+                Clicked="OnAddTenantClicked"
+                BackgroundColor="#2ECC71"
+                TextColor="White"
+                FontAttributes="Bold"
+                Margin="15,10"
+                CornerRadius="8"
+                HeightRequest="45"/>
+
+        <RefreshView Grid.Row="2"
+                     x:Name="refreshView"
+                     Refreshing="OnRefreshing">
+            <CollectionView x:Name="TenantsCollectionView" Margin="10,0">
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="40">
+                        <Label Text="🏘️" FontSize="48" HorizontalOptions="Center"/>
+                        <Label Text="No Tenants Found" FontSize="18" FontAttributes="Bold"
+                               TextColor="#888" HorizontalOptions="Center"/>
+                        <Label Text="Tap '+ Add New Tenant' to get started."
+                               FontSize="13" TextColor="#AAA" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5,5" Padding="15" CornerRadius="10"
+                               BorderColor="#D0D0D0" BackgroundColor="White" HasShadow="True">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <StackLayout Grid.Column="0" Spacing="3">
+                                    <Label Text="{Binding FullName}" FontSize="16"
+                                           FontAttributes="Bold" TextColor="#1A3C5E"/>
+                                    <Label Text="{Binding Email}" FontSize="13" TextColor="#555"/>
+                                    <Label Text="{Binding PhoneNumber}" FontSize="13" TextColor="#555"/>
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Unit:" FontSize="13" TextColor="#888"/>
+                                        <Label Text="{Binding UnitNumber}" FontSize="13"
+                                               FontAttributes="Bold" TextColor="#2ECC71"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding MonthlyRent, StringFormat='₱{0:N2}/month'}"
+                                           FontSize="13" TextColor="#E74C3C" FontAttributes="Bold"/>
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="8">
+                                    <Button Text="✏️ Edit" BackgroundColor="#3498DB" TextColor="White"
+                                            FontSize="12" CornerRadius="6" HeightRequest="35"
+                                            WidthRequest="80" CommandParameter="{Binding .}"
+                                            Clicked="OnEditClicked"/>
+                                    <Button Text="🚫 Hide" BackgroundColor="#F39C12" TextColor="White"
+                                            FontSize="12" CornerRadius="6" HeightRequest="35"
+                                            WidthRequest="80" CommandParameter="{Binding .}"
+                                            Clicked="OnSoftDeleteClicked"/>
+                                    <Button Text="🗑️ Delete" BackgroundColor="#E74C3C" TextColor="White"
+                                            FontSize="12" CornerRadius="6" HeightRequest="35"
+                                            WidthRequest="80" CommandParameter="{Binding .}"
+                                            Clicked="OnHardDeleteClicked"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+</ContentPage>
