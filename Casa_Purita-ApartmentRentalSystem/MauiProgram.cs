@@ -1,4 +1,5 @@
-﻿using Casa_Purita_ApartmentRentalSystem.Services;
+﻿using Casa_Purita_ApartmentRentalSystem.MVVM.Views;
+using Casa_Purita_ApartmentRentalSystem.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Casa_Purita_ApartmentRentalSystem
@@ -16,17 +17,22 @@ namespace Casa_Purita_ApartmentRentalSystem
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            // Register HttpClient + TenantService
+            // Services
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<TenantService>();
 
-            #if DEBUG
+            // Views
+            builder.Services.AddTransient<HomeView>();
+            builder.Services.AddTransient<MainView>();
+            builder.Services.AddTransient<CreateView>();
+            builder.Services.AddTransient<UpdateView>();
+            builder.Services.AddTransient<DeletedTenantsView>();
+
+#if DEBUG
             builder.Logging.AddDebug();
-            #endif
+#endif
 
             return builder.Build();
         }
     }
-
 }
-

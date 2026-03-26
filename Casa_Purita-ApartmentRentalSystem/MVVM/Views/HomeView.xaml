@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Casa_Purita_ApartmentRentalSystem.MVVM.Views.HomeView"
+             Title="Home"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#0F0F13">
+
+    <Grid RowDefinitions="*, Auto">
+
+        <!-- MAIN CONTENT -->
+        <ScrollView Grid.Row="0" VerticalOptions="Center">
+            <StackLayout Padding="32,60,32,40" Spacing="0" VerticalOptions="Center">
+
+                <!-- TOP ACCENT LINE -->
+                <BoxView HeightRequest="3"
+                         WidthRequest="48"
+                         CornerRadius="2"
+                         Color="#C9A96E"
+                         HorizontalOptions="Center"
+                         Margin="0,0,0,32"/>
+
+                <!-- LOGO / ICON BADGE -->
+                <Frame WidthRequest="100"
+                       HeightRequest="100"
+                       CornerRadius="50"
+                       BackgroundColor="#16161F"
+                       BorderColor="#C9A96E"
+                       Padding="0"
+                       HasShadow="False"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,28">
+                    <Label Text="⌂"
+                           FontSize="48"
+                           TextColor="#C9A96E"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- BRAND NAME -->
+                <Label Text="CASA PURITA"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       TextColor="#C9A96E"
+                       CharacterSpacing="6"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,8"/>
+
+                <!-- HEADLINE -->
+                <Label Text="Apartment Rental"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       TextColor="#F0EDE8"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,4"/>
+                <Label Text="Management System"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       TextColor="#F0EDE8"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+                <!-- SUBTITLE -->
+                <Label Text="A simple and elegant way to manage your residents, units, and rental records."
+                       FontSize="14"
+                       TextColor="#7A7A8A"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       LineBreakMode="WordWrap"
+                       Margin="0,0,0,48"/>
+
+                <!-- FEATURE CARDS -->
+                <Frame BackgroundColor="#16161F"
+                       BorderColor="#1E1E2C"
+                       CornerRadius="18"
+                       Padding="20,16"
+                       HasShadow="False"
+                       Margin="0,0,0,12">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Frame Grid.Column="0"
+                               WidthRequest="44"
+                               HeightRequest="44"
+                               CornerRadius="22"
+                               BackgroundColor="#1F1F2C"
+                               BorderColor="#2A2A3C"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="👥"
+                                   FontSize="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+                        <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Resident Profiles"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#F0EDE8"/>
+                            <Label Text="Add, edit, and manage all tenants in one place."
+                                   FontSize="12"
+                                   TextColor="#6A6A7A"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="#16161F"
+                       BorderColor="#1E1E2C"
+                       CornerRadius="18"
+                       Padding="20,16"
+                       HasShadow="False"
+                       Margin="0,0,0,12">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Frame Grid.Column="0"
+                               WidthRequest="44"
+                               HeightRequest="44"
+                               CornerRadius="22"
+                               BackgroundColor="#1F1F2C"
+                               BorderColor="#2A2A3C"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="⌂"
+                                   FontSize="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+                        <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Unit Tracking"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#F0EDE8"/>
+                            <Label Text="Keep track of unit numbers, move-in dates and rent."
+                                   FontSize="12"
+                                   TextColor="#6A6A7A"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="#16161F"
+                       BorderColor="#1E1E2C"
+                       CornerRadius="18"
+                       Padding="20,16"
+                       HasShadow="False"
+                       Margin="0,0,0,0">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Frame Grid.Column="0"
+                               WidthRequest="44"
+                               HeightRequest="44"
+                               CornerRadius="22"
+                               BackgroundColor="#1F1F2C"
+                               BorderColor="#2A2A3C"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="🗂️"
+                                   FontSize="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+                        <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Archive &amp; Restore"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#F0EDE8"/>
+                            <Label Text="Soft-delete residents and restore them anytime."
+                                   FontSize="12"
+                                   TextColor="#6A6A7A"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+
+        <!-- BOTTOM CTA BUTTON -->
+        <StackLayout Grid.Row="1"
+                     Padding="32,0,32,48"
+                     Spacing="12"
+                     BackgroundColor="#0F0F13">
+
+            <BoxView HeightRequest="1"
+                     Color="#1E1E28"
+                     Margin="0,0,0,4"/>
+
+            <Frame BackgroundColor="#C9A96E"
+                   CornerRadius="16"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   HasShadow="False">
+                <Button Text="GET STARTED  →"
+                        Clicked="OnGetStartedClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#0F0F13"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        CharacterSpacing="2"
+                        HeightRequest="58"/>
+            </Frame>
+
+            <Label Text="Casa Purita · Rental Management"
+                   FontSize="11"
+                   TextColor="#3A3A4A"
+                   HorizontalOptions="Center"
+                   CharacterSpacing="1"/>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>
