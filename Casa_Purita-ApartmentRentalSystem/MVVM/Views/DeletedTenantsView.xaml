@@ -211,7 +211,7 @@
                                                  VerticalOptions="Center"/>
 
                                         <Button Grid.Column="1"
-                                                Text="⊗  Delete Forever"
+                                                Text="Delete Forever"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#C96E6E"
                                                 FontSize="12"

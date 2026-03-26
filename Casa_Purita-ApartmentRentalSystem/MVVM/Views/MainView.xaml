@@ -233,13 +233,15 @@
                                                  VerticalOptions="Center"/>
 
                                         <Button Grid.Column="1"
-                                                Text="⊘  Hide"
+                                                Text="Hide"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#8A8A9A"
                                                 FontSize="12"
                                                 HeightRequest="44"
                                                 CommandParameter="{Binding .}"
-                                                Clicked="OnSoftDeleteClicked"/>
+                                                Clicked="OnSoftDeleteClicked"
+                                                FontAttributes="Bold"/>
+                                                
 
                                         <BoxView Grid.Column="1"
                                                  WidthRequest="1"
@@ -249,11 +251,12 @@
                                                  VerticalOptions="Center"/>
 
                                         <Button Grid.Column="2"
-                                                Text="⊗  Delete"
+                                                Text="Delete"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#C96E6E"
                                                 FontSize="12"
                                                 HeightRequest="44"
+                                                FontAttributes="Bold"
                                                 CommandParameter="{Binding .}"
                                                 Clicked="OnHardDeleteClicked"/>
                                     </Grid>
