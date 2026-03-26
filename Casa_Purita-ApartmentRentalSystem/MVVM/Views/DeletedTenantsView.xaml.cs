@@ -1,6 +1,5 @@
 using Casa_Purita_ApartmentRentalSystem.MVVM.Model;
 using Casa_Purita_ApartmentRentalSystem.Services;
-using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 
 namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
 {

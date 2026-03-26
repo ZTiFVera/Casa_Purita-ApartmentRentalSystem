@@ -54,10 +54,16 @@
                          Color="#1E1E28"
                          Margin="0,12,0,0"/>
 
-                <Label Text="🏢  All Residents"
-                       FontSize="13"
-                       TextColor="#7A7A8A"
-                       Margin="0,8,0,0"/>
+                <StackLayout Orientation="Horizontal" Spacing="8" Margin="0,8,0,0">
+                    <Label Text="⌂"
+                           FontSize="15"
+                           TextColor="#C9A96E"
+                           VerticalOptions="Center"/>
+                    <Label Text="All Residents"
+                           FontSize="13"
+                           TextColor="#7A7A8A"
+                           VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
         </Grid>
 
@@ -68,7 +74,6 @@
               RowDefinitions="Auto,Auto"
               RowSpacing="10">
 
-            <!-- ADD NEW RESIDENT -->
             <Frame Grid.Row="0"
                    BackgroundColor="#C9A96E"
                    CornerRadius="14"
@@ -85,14 +90,13 @@
                         HeightRequest="52"/>
             </Frame>
 
-            <!-- VIEW HIDDEN RESIDENTS -->
             <Frame Grid.Row="1"
                    BackgroundColor="#16161F"
                    CornerRadius="14"
                    Padding="0"
                    BorderColor="#2A1A1A"
                    HasShadow="False">
-                <Button Text="🚫  VIEW HIDDEN RESIDENTS"
+                <Button Text="⊘  VIEW HIDDEN RESIDENTS"
                         Clicked="OnViewDeletedClicked"
                         BackgroundColor="Transparent"
                         TextColor="#C96E6E"
@@ -118,8 +122,9 @@
                                  VerticalOptions="Center"
                                  Padding="40"
                                  Spacing="12">
-                        <Label Text="🏢"
+                        <Label Text="⌂"
                                FontSize="52"
+                               TextColor="#C9A96E"
                                HorizontalOptions="Center"/>
                         <Label Text="No Residents Yet"
                                FontSize="18"
@@ -161,8 +166,9 @@
                                                BorderColor="#2A2A3C"
                                                Padding="0"
                                                VerticalOptions="Start">
-                                            <Label Text="🏠"
+                                            <Label Text="⌂"
                                                    FontSize="22"
+                                                   TextColor="#C9A96E"
                                                    HorizontalOptions="Center"
                                                    VerticalOptions="Center"/>
                                         </Frame>
@@ -210,7 +216,7 @@
                                           ColumnSpacing="0">
 
                                         <Button Grid.Column="0"
-                                                Text="✏  Edit"
+                                                Text="✎  Edit"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#C9A96E"
                                                 FontSize="12"
@@ -227,7 +233,7 @@
                                                  VerticalOptions="Center"/>
 
                                         <Button Grid.Column="1"
-                                                Text="◎  Hide"
+                                                Text="⊘  Hide"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#8A8A9A"
                                                 FontSize="12"
@@ -243,7 +249,7 @@
                                                  VerticalOptions="Center"/>
 
                                         <Button Grid.Column="2"
-                                                Text="✕  Delete"
+                                                Text="⊗  Delete"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#C96E6E"
                                                 FontSize="12"
