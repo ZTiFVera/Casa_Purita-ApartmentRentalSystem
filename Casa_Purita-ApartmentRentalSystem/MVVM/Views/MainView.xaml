@@ -216,7 +216,7 @@
                                           ColumnSpacing="0">
 
                                         <Button Grid.Column="0"
-                                                Text="✎  Edit"
+                                                Text="Edit"
                                                 BackgroundColor="Transparent"
                                                 TextColor="#C9A96E"
                                                 FontSize="12"

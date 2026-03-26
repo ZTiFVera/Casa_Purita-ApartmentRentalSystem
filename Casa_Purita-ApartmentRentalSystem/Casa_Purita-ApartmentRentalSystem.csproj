@@ -67,10 +67,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\ViewModel\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="MVVM\Views\CreateView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -83,6 +79,10 @@
 	  <MauiXaml Update="MVVM\Views\UpdateView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="MVVM\ViewModel\" />
 	</ItemGroup>
 
 </Project>
