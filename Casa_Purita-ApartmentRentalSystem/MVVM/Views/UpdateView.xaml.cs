@@ -7,14 +7,15 @@ public partial class UpdateView : ContentPage
 {
     private readonly TenantService _tenantService;
     private readonly Tenant _tenant;
-
+ 
     public UpdateView(TenantService tenantService, Tenant tenant)
     {
         InitializeComponent();
         _tenantService = tenantService;
         _tenant = tenant;
-
-        // Pre-fill fields with existing tenant data
+ 
+        System.Diagnostics.Debug.WriteLine($"[UpdateView] Loaded tenant Id='{tenant.Id}'");
+ 
         FirstNameEntry.Text = tenant.FirstName;
         LastNameEntry.Text = tenant.LastName;
         EmailEntry.Text = tenant.Email;
@@ -23,10 +24,9 @@ public partial class UpdateView : ContentPage
         MoveInDatePicker.Date = tenant.MoveInDate;
         MonthlyRentEntry.Text = tenant.MonthlyRent.ToString();
     }
-
+ 
     private async void OnUpdateClicked(object sender, EventArgs e)
     {
-        // Validation
         if (string.IsNullOrWhiteSpace(FirstNameEntry.Text) ||
             string.IsNullOrWhiteSpace(LastNameEntry.Text) ||
             string.IsNullOrWhiteSpace(EmailEntry.Text) ||
@@ -37,14 +37,13 @@ public partial class UpdateView : ContentPage
             await DisplayAlert("Validation Error", "Please fill in all fields.", "OK");
             return;
         }
-
+ 
         if (!decimal.TryParse(MonthlyRentEntry.Text, out decimal rent))
         {
             await DisplayAlert("Validation Error", "Please enter a valid rent amount.", "OK");
             return;
         }
-
-        // Update tenant object
+ 
         _tenant.FirstName = FirstNameEntry.Text.Trim();
         _tenant.LastName = LastNameEntry.Text.Trim();
         _tenant.Email = EmailEntry.Text.Trim();
@@ -52,11 +51,13 @@ public partial class UpdateView : ContentPage
         _tenant.UnitNumber = UnitNumberEntry.Text.Trim();
         _tenant.MoveInDate = MoveInDatePicker.Date;
         _tenant.MonthlyRent = rent;
-
+ 
+        System.Diagnostics.Debug.WriteLine($"[UpdateView] Updating Id='{_tenant.Id}'");
+ 
         try
         {
-            bool success = await _tenantService.UpdateTenantAsync(_tenant.TenantId, _tenant);
-
+            bool success = await _tenantService.UpdateTenantAsync(_tenant.Id, _tenant);
+ 
             if (success)
             {
                 await DisplayAlert("Success", "Tenant updated successfully!", "OK");
@@ -72,7 +73,7 @@ public partial class UpdateView : ContentPage
             await DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK");
         }
     }
-
+ 
     private async void OnCancelClicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();

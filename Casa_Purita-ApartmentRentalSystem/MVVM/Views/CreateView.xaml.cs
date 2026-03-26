@@ -16,11 +16,11 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
         private async void OnSaveClicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(FirstNameEntry.Text) ||
-                 string.IsNullOrWhiteSpace(LastNameEntry.Text) ||
-                 string.IsNullOrWhiteSpace(EmailEntry.Text) ||
-                 string.IsNullOrWhiteSpace(PhoneEntry.Text) ||
-                 string.IsNullOrWhiteSpace(UnitNumberEntry.Text) ||
-                 string.IsNullOrWhiteSpace(MonthlyRentEntry.Text))
+                string.IsNullOrWhiteSpace(LastNameEntry.Text) ||
+                string.IsNullOrWhiteSpace(EmailEntry.Text) ||
+                string.IsNullOrWhiteSpace(PhoneEntry.Text) ||
+                string.IsNullOrWhiteSpace(UnitNumberEntry.Text) ||
+                string.IsNullOrWhiteSpace(MonthlyRentEntry.Text))
             {
                 await DisplayAlert("Validation Error", "Please fill in all fields.", "OK");
                 return;
@@ -32,18 +32,16 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
                 return;
             }
 
-            // FIX 1: Do NOT set TenantId — MockAPI auto-generates it.
-            // FIX 2: Convert MoveInDate to string to avoid serialization issues.
-            var newTenant = new
+            var newTenant = new Tenant
             {
-                firstName = FirstNameEntry.Text.Trim(),
-                lastName = LastNameEntry.Text.Trim(),
-                email = EmailEntry.Text.Trim(),
-                phoneNumber = PhoneEntry.Text.Trim(),
-                unitNumber = UnitNumberEntry.Text.Trim(),
-                moveInDate = MoveInDatePicker.Date.ToString("yyyy-MM-dd"),
-                monthlyRent = rent,
-                isDeleted = false
+                FirstName = FirstNameEntry.Text.Trim(),
+                LastName = LastNameEntry.Text.Trim(),
+                Email = EmailEntry.Text.Trim(),
+                PhoneNumber = PhoneEntry.Text.Trim(),
+                UnitNumber = UnitNumberEntry.Text.Trim(),
+                MoveInDate = MoveInDatePicker.Date, // DateTime ✅
+                MonthlyRent = rent,
+                IsDeleted = false
             };
 
             try

@@ -5,6 +5,7 @@ using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 
 namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
 {
+
     public partial class MainView : ContentPage
     {
         private readonly TenantService _tenantService;
@@ -52,8 +53,15 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
         {
             if (sender is Button btn && btn.CommandParameter is Tenant tenant)
             {
-                await Navigation.PushAsync(new UpdateView(_tenantService, tenant));
+                // Guard: make sure Id loaded correctly before navigating
+                if (string.IsNullOrEmpty(tenant.Id))
+                {
+                    await DisplayAlert("Error", "Tenant ID is missing. Please refresh and try again.", "OK");
+                    return;
+                }
 
+                System.Diagnostics.Debug.WriteLine($"[Edit] Opening tenant Id='{tenant.Id}'");
+                await Navigation.PushAsync(new UpdateView(_tenantService, tenant));
             }
         }
 
@@ -61,6 +69,12 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
         {
             if (sender is Button btn && btn.CommandParameter is Tenant tenant)
             {
+                if (string.IsNullOrEmpty(tenant.Id))
+                {
+                    await DisplayAlert("Error", "Tenant ID is missing. Please refresh and try again.", "OK");
+                    return;
+                }
+
                 bool confirm = await DisplayAlert(
                     "Soft Delete",
                     $"Hide {tenant.FullName} from the list? They will NOT be permanently removed.",
@@ -68,7 +82,8 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
 
                 if (confirm)
                 {
-                    bool success = await _tenantService.SoftDeleteTenantAsync(tenant.TenantId);
+                    System.Diagnostics.Debug.WriteLine($"[SoftDelete] Tenant Id='{tenant.Id}'");
+                    bool success = await _tenantService.SoftDeleteTenantAsync(tenant.Id);
                     if (success)
                     {
                         await DisplayAlert("Success", $"{tenant.FullName} has been hidden.", "OK");
@@ -84,6 +99,12 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
         {
             if (sender is Button btn && btn.CommandParameter is Tenant tenant)
             {
+                if (string.IsNullOrEmpty(tenant.Id))
+                {
+                    await DisplayAlert("Error", "Tenant ID is missing. Please refresh and try again.", "OK");
+                    return;
+                }
+
                 bool confirm = await DisplayAlert(
                     "⚠️ Hard Delete",
                     $"Permanently delete {tenant.FullName}? This CANNOT be undone!",
@@ -91,7 +112,8 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
 
                 if (confirm)
                 {
-                    bool success = await _tenantService.HardDeleteTenantAsync(tenant.TenantId);
+                    System.Diagnostics.Debug.WriteLine($"[HardDelete] Tenant Id='{tenant.Id}'");
+                    bool success = await _tenantService.HardDeleteTenantAsync(tenant.Id);
                     if (success)
                     {
                         await DisplayAlert("Deleted", $"{tenant.FullName} has been permanently removed.", "OK");
