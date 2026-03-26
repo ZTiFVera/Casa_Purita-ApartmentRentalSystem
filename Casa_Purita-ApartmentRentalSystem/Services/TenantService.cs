@@ -12,12 +12,13 @@ namespace Casa_Purita_ApartmentRentalSystem.Services
     {
         private readonly HttpClient _httpClient;
 
-        private const string BaseUrl = "https://localhost:7000/api/tenants";
+        // FIX: Use the full MockAPI URL directly — no BaseAddress to avoid conflicts
+        private const string BaseUrl = "https://TenantId.mockapi.io/api/tenants";
 
         public TenantService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:7000/");
+            // FIX: Removed BaseAddress — using full URL in each method instead
         }
 
         public async Task<List<Tenant>> GetAllTenantsAsync()
@@ -31,15 +32,37 @@ namespace Casa_Purita_ApartmentRentalSystem.Services
             return await _httpClient.GetFromJsonAsync<Tenant>($"{BaseUrl}/{id}");
         }
 
-        public async Task<bool> CreateTenantAsync(Tenant tenant)
+        // FIX: Accept object so we can send an anonymous type without TenantId
+        public async Task<bool> CreateTenantAsync(object tenant)
         {
             var response = await _httpClient.PostAsJsonAsync(BaseUrl, tenant);
+
+            // Debug: log the error if it fails
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                System.Diagnostics.Debug.WriteLine($"[CreateTenant] Failed: {response.StatusCode} - {error}");
+            }
+
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> UpdateTenantAsync(int id, Tenant tenant)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/{id}", tenant);
+            // FIX: Send formatted date string to avoid DateTime serialization issues
+            var payload = new
+            {
+                firstName = tenant.FirstName,
+                lastName = tenant.LastName,
+                email = tenant.Email,
+                phoneNumber = tenant.PhoneNumber,
+                unitNumber = tenant.UnitNumber,
+                moveInDate = tenant.MoveInDate.ToString("yyyy-MM-dd"),
+                monthlyRent = tenant.MonthlyRent,
+                isDeleted = tenant.IsDeleted
+            };
+
+            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/{id}", payload);
             return response.IsSuccessStatusCode;
         }
 
