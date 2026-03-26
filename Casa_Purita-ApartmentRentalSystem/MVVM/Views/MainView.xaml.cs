@@ -124,5 +124,9 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Views
                 }
             }
         }
+        private async void OnViewDeletedClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DeletedTenantsView(_tenantService));
+        }
     }
 }

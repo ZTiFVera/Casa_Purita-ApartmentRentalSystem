@@ -196,5 +196,26 @@ namespace Casa_Purita_ApartmentRentalSystem.Services
                 throw;
             }
         }
+        public async Task<List<Tenant>> GetDeletedTenantsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync(BaseUrl);
+                var raw = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                    return new List<Tenant>();
+
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var tenants = JsonSerializer.Deserialize<List<Tenant>>(raw, options);
+
+                return tenants?.Where(t => t.IsDeleted).ToList() ?? new List<Tenant>();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[GetDeleted] Exception: {ex.Message}");
+                throw;
+            }
+        }
     }
 }

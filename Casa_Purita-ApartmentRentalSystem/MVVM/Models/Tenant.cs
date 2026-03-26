@@ -37,7 +37,7 @@ namespace Casa_Purita_ApartmentRentalSystem.MVVM.Model
     public class Tenant
     {
         // "id" is the exact key MockAPI returns — also handles "Id" via case-insensitive options
-        [JsonPropertyName("id")]
+        [JsonPropertyName("TenantId")]
         public string Id { get; set; } = string.Empty;
 
         [JsonPropertyName("firstName")]
