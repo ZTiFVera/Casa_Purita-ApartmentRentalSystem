@@ -84,4 +84,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="MVVM\NewFolder\" />
+	</ItemGroup>
+
 </Project>
