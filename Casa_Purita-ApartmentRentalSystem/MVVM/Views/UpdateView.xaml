@@ -14,7 +14,7 @@
                      VerticalOptions="Start"
                      Color="#C9A96E"/>
             <StackLayout Padding="24,28,24,20" Spacing="4">
-                <Label Text="CASA PURITA"
+                <Label Text="HOME VILLE"
                        FontSize="11"
                        FontAttributes="Bold"
                        TextColor="#C9A96E"

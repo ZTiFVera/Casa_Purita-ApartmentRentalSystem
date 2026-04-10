@@ -33,7 +33,7 @@
                     </Frame>
 
                     <StackLayout Grid.Column="1" Spacing="2">
-                        <Label Text="CASA PURITA"
+                        <Label Text="HOME VILLE"
                                FontSize="11"
                                FontAttributes="Bold"
                                TextColor="#C96E6E"

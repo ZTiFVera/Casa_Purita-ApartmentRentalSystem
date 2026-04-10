@@ -18,7 +18,7 @@
 
                 <Grid ColumnDefinitions="*, Auto" Margin="0,6,0,0">
                     <StackLayout Grid.Column="0" Spacing="2">
-                        <Label Text="CASA PURITA"
+                        <Label Text="HOME VILLE"
                                FontSize="11"
                                FontAttributes="Bold"
                                TextColor="#C9A96E"
@@ -122,7 +122,7 @@
                                  VerticalOptions="Center"
                                  Padding="40"
                                  Spacing="12">
-                        <Label Text="⌂"
+                        <Label Text="🏠"
                                FontSize="52"
                                TextColor="#C9A96E"
                                HorizontalOptions="Center"/>
